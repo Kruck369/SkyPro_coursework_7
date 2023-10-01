@@ -16,3 +16,7 @@ redis
 eventlet
 celery
 django-celery-beat
+dj-rest-auth
+requests
+python-telegram-bot
+coverage
