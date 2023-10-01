@@ -1,24 +1,10 @@
-from django.db import models
-
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from users.managers import CustomUserManager
-
-NULLABLE = {'blank': True, 'null': True}
-
 
 class User(AbstractUser):
-    username = None
-    email = models.EmailField(unique=True, verbose_name='почта')
-    first_name = models.CharField(max_length=150, verbose_name='имя')
-    last_name = models.CharField(max_length=150, verbose_name='фамилия')
+    email = models.EmailField(unique=True)
+    telegram_user_id = models.CharField(max_length=150, verbose_name='телеграм id', null=True, blank=True)
 
-    phone = models.CharField(max_length=35, verbose_name='телефон')
-    city = models.CharField(max_length=50, verbose_name='город')
-    avatar = models.ImageField(upload_to='users/', verbose_name='аватар', **NULLABLE)
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-
-    objects = CustomUserManager()
+    def __str__(self):
+        return self.username
